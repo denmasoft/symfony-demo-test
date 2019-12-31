@@ -26,9 +26,8 @@ class InfoRepository extends ServiceEntityRepository
     public function search($value)
     {
         return $this->createQueryBuilder('i')
-            ->andWhere('i.subject = :val')
-            ->orWhere('i.description = :val')
-            ->setParameter('val', $value)
+            ->andWhere('i.subject LIKE :val OR i.description LIKE :val')
+           ->setParameter('val', '%'.$value.'%')
             ->orderBy('i.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
