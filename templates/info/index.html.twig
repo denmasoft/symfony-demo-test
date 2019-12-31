@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prueba{% endblock %}
+
+{% block body %}
+<section class="innerpage-wrapper">
+   
+    <div id="search-result-page" class="innerpage-section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <a href="/entry" class="btn btn-success" style="margin-top:25px;">Nueva Info</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-side">
+                    <div class="col-xs-12 col-sm-10 col-md-3 col-lg-6 offset-sm-3 page-search-form">
+                        <form class="pg-search-form" novalidate method="POST" action="/search">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-10 col-md-3 col-lg-9">
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Buscar..." id="search" name="search" />
+                                    </div>
+                                </div><!-- end columns -->
+                                
+                                <div class="col-xs-12 col-sm-2 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-secondary" value="Buscar">Buscar</button>
+                                    </div>
+                                </div><!-- end columns -->
+                            </div><!-- end row -->
+                            {% if result %}
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-10 col-md-3 col-lg-9">
+                                        {% for item in result %}
+                                            <div class="row">
+                                                <h1>{{ item.subject }}</h1>
+                                                <label>{{ item.date }}</label>
+                                                <p>{{ item.description }}</p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endif %}    
+                            <input type="hidden" name="token" value="{{ csrf_token('search-data') }}"/>
+                        </form>
+                    </div>
+                </div><!-- end columns -->
+
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end search-result-page -->
+</section>
+{% endblock %}

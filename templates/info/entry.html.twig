@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prueba{% endblock %}
+
+{% block body %}
+<section class="innerpage-wrapper">
+    <div id="search-result-page" class="innerpage-section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-side">
+                    <div class="col-xs-12 col-sm-10 col-md-3 col-lg-6 offset-sm-3 page-search-form">
+                        <form class="pg-search-form" method="POST" action="/search">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-10 col-md-3 col-lg-9">
+                                    <div class="form-group">
+                                        <input type="date" class="form-control" required placeholder="Fecha..." id="date" name="date" />
+                                    </div>
+                                </div><!-- end columns -->
+                            </div><!-- end row -->
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-10 col-md-3 col-lg-9">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" required placeholder="Asunto..." id="subject" name="subject" />
+                                    </div>
+                                </div><!-- end columns -->
+                            </div><!-- end row -->
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-10 col-md-3 col-lg-9">
+                                    <div class="form-group">
+                                        <textarea required style="margin-top: 0px; margin-bottom: 0px; height: 166px;" id="description" name="description" class="form-control" ></textarea>
+                                    </div>
+                                </div><!-- end columns -->
+                            </div><!-- end row -->
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-10 col-md-3 col-lg-9">
+                                    <div class="form-group">
+                                        <button style="float: right;" type="submit" class="btn btn-secondary" value="Guardar">Guardar</button>
+                                        <input type="hidden" name="token" value="{{ csrf_token('save-data') }}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- end columns -->
+
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end search-result-page -->
+</section>
+{% endblock %}
